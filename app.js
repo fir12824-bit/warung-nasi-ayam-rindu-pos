@@ -11,7 +11,7 @@ const D=[
 ].map((x,i)=>({id:"m"+(i+1),name:x[0],cat:x[1],price:x[2]}));
 let S=JSON.parse(localStorage.getItem(K)||"null")||{menus:D,sales:[],tables:{}};
 S.tables=S.tables||{};
-let cart=[],pay="Cash",cat="SEMUA",table="01";
+let cart=[],pay="Cash",cat="SEMUA",table="01",splitPay="Cash",splitSelection={};
 const TABLES=Array.from({length:20},(_,i)=>String(i+1).padStart(2,"0"));
 const $=id=>document.getElementById(id), rm=n=>"RM"+n.toFixed(2), today=d=>new Date(d||Date.now()).toLocaleDateString("en-CA");
 function save(){localStorage.setItem(K,JSON.stringify(S))}
@@ -33,6 +33,29 @@ function chg(id,n){let x=cart.find(a=>a.id==id);x.q+=n;if(x.q<1)cart=cart.filter
 window.add=add;window.chg=chg;
 document.querySelectorAll(".pay button").forEach(b=>b.onclick=()=>{pay=b.dataset.pay;document.querySelectorAll(".pay button").forEach(x=>x.classList.toggle("sel",x==b))});
 $("clear").onclick=()=>{if(confirm("Kosongkan pesanan Meja "+table+"?")){cart=[];syncTable();render()}};
+function openSplit(){
+ if(!cart.length)return alert("Pesanan masih kosong.");
+ splitSelection={};
+ $("splitTable").textContent=table;
+ $("splitItems").innerHTML=cart.map(x=>{let m=S.menus.find(a=>a.id==x.id);return `<div class="splitrow"><div><b>${m.name}</b><small>${rm(m.price)} × ${x.q}</small></div><div class="splitqty"><button type="button" onclick="splitQty('${x.id}',-1)">−</button><b id="sq-${x.id}">0</b><button type="button" onclick="splitQty('${x.id}',1)">+</button></div></div>`}).join("");
+ splitPay="Cash";document.querySelectorAll("#splitPay button").forEach(b=>b.classList.toggle("sel",b.dataset.pay==splitPay));
+ updateSplitTotal();$("splitModal").classList.remove("hide");
+}
+function splitQty(id,n){let item=cart.find(x=>x.id==id);if(!item)return;let cur=splitSelection[id]||0;cur=Math.max(0,Math.min(item.q,cur+n));if(cur)splitSelection[id]=cur;else delete splitSelection[id];$("sq-"+id).textContent=cur;updateSplitTotal()}
+function updateSplitTotal(){let total=Object.entries(splitSelection).reduce((sum,[id,q])=>{let m=S.menus.find(x=>x.id==id);return sum+(m?m.price*q:0)},0);$("splitTotal").textContent=rm(total)}
+function finishSplit(){
+ let chosen=cart.filter(x=>splitSelection[x.id]>0).map(x=>{let m=S.menus.find(a=>a.id==x.id);return{name:m.name,price:m.price,q:splitSelection[x.id]}});
+ if(!chosen.length)return alert("Pilih sekurang-kurangnya satu item.");
+ let total=chosen.reduce((a,x)=>a+x.price*x.q,0);
+ S.sales.unshift({no:S.sales.length+1,date:new Date().toISOString(),table,pay:splitPay,items:chosen,total,split:true});
+ cart=cart.map(x=>{let paid=splitSelection[x.id]||0;return {...x,q:x.q-paid}}).filter(x=>x.q>0);
+ syncTable();$("splitModal").classList.add("hide");render();history();report();alert("Bayaran split berjaya disimpan.");
+}
+window.splitQty=splitQty;
+$("splitBill").onclick=openSplit;
+$("cancelSplit").onclick=()=>$("splitModal").classList.add("hide");
+$("confirmSplit").onclick=finishSplit;
+document.querySelectorAll("#splitPay button").forEach(b=>b.onclick=()=>{splitPay=b.dataset.pay;document.querySelectorAll("#splitPay button").forEach(x=>x.classList.toggle("sel",x==b))});
 $("saveSale").onclick=()=>{if(!cart.length)return alert("Pesanan masih kosong.");let items=cart.map(x=>{let m=S.menus.find(a=>a.id==x.id);return{name:m.name,price:m.price,q:x.q}}),total=items.reduce((a,x)=>a+x.price*x.q,0);S.sales.unshift({no:S.sales.length+1,date:new Date().toISOString(),table,pay,items,total});delete S.tables[table];save();cart=[];render();history();report();alert("Jualan berjaya disimpan.")};
 function history(){if(!S.sales.length){$("history").innerHTML="<p>Belum ada rekod jualan.</p>";return}$("history").innerHTML=`<table class="table"><tr><th>No.</th><th>Meja</th><th>Tarikh/Masa</th><th>Item</th><th>Bayaran</th><th>Jumlah</th></tr>${S.sales.map(s=>`<tr><td>#${s.no}</td><td>Meja ${s.table||"-"}</td><td>${new Date(s.date).toLocaleString("ms-MY")}</td><td>${s.items.map(i=>i.name+" × "+i.q).join("<br>")}</td><td>${s.pay}</td><td><b>${rm(s.total)}</b></td></tr>`).join("")}</table>`}
 $("clearSales").onclick=()=>{if(confirm("Padam semua rekod jualan?")){S.sales=[];save();history();report();render()}};
