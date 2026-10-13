@@ -7,72 +7,38 @@ const D=[
 ["Sambal / Rempah / Penyet","AYAM",6],["Madu","SET AYAM",5],["Penyet","SET AYAM",8],
 ["Mata","TELUR",1.5],["Dadar","TELUR",1.8],
 ["Nasi Ayam Penuh","NASI TAMBAH",4],["Separuh","NASI TAMBAH",2],["Nasi Putih Penuh","NASI TAMBAH",2],["Separuh","NASI TAMBAH",1],
-["Sos Nasi Ayam / Sambal Ayam / Belacan","ADD ON",1]
-].map((x,i)=>({id:"m"+(i+1),name:x[0],cat:x[1],price:x[2]})).concat([
-{id:'drink_sweet_treats_koko_tokma_cawan',name:'Koko TokMa — Cawan',cat:'Sweet Treats',price:4},
-{id:'drink_sweet_treats_koko_tokma_bungkus',name:'Koko TokMa — Bungkus',cat:'Sweet Treats',price:5},
-{id:'drink_sweet_treats_kacira_adudu_cawan',name:'Kacira Adudu — Cawan',cat:'Sweet Treats',price:2.5},
-{id:'drink_sweet_treats_kacira_adudu_bungkus',name:'Kacira Adudu — Bungkus',cat:'Sweet Treats',price:3.5},
-{id:'drink_sweet_treats_asam_boi_lemon_cawan',name:'Asam Boi Lemon — Cawan',cat:'Sweet Treats',price:2.5},
-{id:'drink_sweet_treats_asam_boi_lemon_bungkus',name:'Asam Boi Lemon — Bungkus',cat:'Sweet Treats',price:3.5},
-{id:'drink_sweet_treats_teh_o_lemon_ais_cawan',name:'Teh O Lemon Ais — Cawan',cat:'Sweet Treats',price:2.5},
-{id:'drink_sweet_treats_teh_o_lemon_ais_bungkus',name:'Teh O Lemon Ais — Bungkus',cat:'Sweet Treats',price:3.5},
-{id:'drink_sweet_treats_sirap_lemon_ais_cawan',name:'Sirap Lemon Ais — Cawan',cat:'Sweet Treats',price:2.5},
-{id:'drink_sweet_treats_sirap_lemon_ais_bungkus',name:'Sirap Lemon Ais — Bungkus',cat:'Sweet Treats',price:3.5},
-{id:'drink_sweet_treats_sirap_bandung_ais_cawan',name:'Sirap Bandung Ais — Cawan',cat:'Sweet Treats',price:2.5},
-{id:'drink_sweet_treats_sirap_bandung_ais_bungkus',name:'Sirap Bandung Ais — Bungkus',cat:'Sweet Treats',price:3.5},
-{id:'drink_sweet_treats_kopi_ais_cawan',name:'Kopi Ais — Cawan',cat:'Sweet Treats',price:2.5},
-{id:'drink_sweet_treats_kopi_ais_bungkus',name:'Kopi Ais — Bungkus',cat:'Sweet Treats',price:4},
-{id:'drink_hot_drinks_kopi_panas_cawan',name:'Kopi Panas — Cawan',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_kopi_panas_bungkus',name:'Kopi Panas — Bungkus',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_teh_panas_cawan',name:'Teh Panas — Cawan',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_teh_panas_bungkus',name:'Teh Panas — Bungkus',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_nes_panas_cawan',name:'Nes Panas — Cawan',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_nes_panas_bungkus',name:'Nes Panas — Bungkus',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_teh_o_lemon_panas_cawan',name:'Teh O Lemon Panas — Cawan',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_teh_o_lemon_panas_bungkus',name:'Teh O Lemon Panas — Bungkus',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_sirap_lemon_panas_cawan',name:'Sirap Lemon Panas — Cawan',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_sirap_lemon_panas_bungkus',name:'Sirap Lemon Panas — Bungkus',cat:'Hot Drinks',price:2},
-{id:'drink_hot_drinks_kopi_o_panas_cawan',name:'Kopi O Panas — Cawan',cat:'Hot Drinks',price:1.5},
-{id:'drink_hot_drinks_kopi_o_panas_bungkus',name:'Kopi O Panas — Bungkus',cat:'Hot Drinks',price:1.5},
-{id:'drink_hot_drinks_teh_o_panas_cawan',name:'Teh O Panas — Cawan',cat:'Hot Drinks',price:1.5},
-{id:'drink_hot_drinks_teh_o_panas_bungkus',name:'Teh O Panas — Bungkus',cat:'Hot Drinks',price:1.5},
-{id:'drink_hot_drinks_nes_o_panas_cawan',name:'Nes O Panas — Cawan',cat:'Hot Drinks',price:1.5},
-{id:'drink_hot_drinks_nes_o_panas_bungkus',name:'Nes O Panas — Bungkus',cat:'Hot Drinks',price:1.5},
-{id:'drink_hot_drinks_lemon_panas_cawan',name:'Lemon Panas — Cawan',cat:'Hot Drinks',price:1.5},
-{id:'drink_hot_drinks_lemon_panas_bungkus',name:'Lemon Panas — Bungkus',cat:'Hot Drinks',price:1.5},
-{id:'drink_cold_drinks_teh_o_ais_cawan',name:'Teh O Ais — Cawan',cat:'Cold Drinks',price:2},
-{id:'drink_cold_drinks_teh_o_ais_bungkus',name:'Teh O Ais — Bungkus',cat:'Cold Drinks',price:2.5},
-{id:'drink_cold_drinks_teh_ais_cawan',name:'Teh Ais — Cawan',cat:'Cold Drinks',price:2.5},
-{id:'drink_cold_drinks_teh_ais_bungkus',name:'Teh Ais — Bungkus',cat:'Cold Drinks',price:4},
-{id:'drink_cold_drinks_nescafe_o_ais_cawan',name:'Nescafe O Ais — Cawan',cat:'Cold Drinks',price:2},
-{id:'drink_cold_drinks_nescafe_o_ais_bungkus',name:'Nescafe O Ais — Bungkus',cat:'Cold Drinks',price:2.5},
-{id:'drink_cold_drinks_nescafe_ais_cawan',name:'Nescafe Ais — Cawan',cat:'Cold Drinks',price:2.5},
-{id:'drink_cold_drinks_nescafe_ais_bungkus',name:'Nescafe Ais — Bungkus',cat:'Cold Drinks',price:4},
-{id:'drink_cold_drinks_sirap_ais_cawan',name:'Sirap Ais — Cawan',cat:'Cold Drinks',price:2},
-{id:'drink_cold_drinks_sirap_ais_bungkus',name:'Sirap Ais — Bungkus',cat:'Cold Drinks',price:2.5},
-{id:'drink_cold_drinks_kopi_o_ais_cawan',name:'Kopi O Ais — Cawan',cat:'Cold Drinks',price:2},
-{id:'drink_cold_drinks_kopi_o_ais_bungkus',name:'Kopi O Ais — Bungkus',cat:'Cold Drinks',price:2.5},
-{id:'drink_cold_drinks_lemon_limau_ais_cawan',name:'Lemon/Limau Ais — Cawan',cat:'Cold Drinks',price:2},
-{id:'drink_cold_drinks_lemon_limau_ais_bungkus',name:'Lemon/Limau Ais — Bungkus',cat:'Cold Drinks',price:2.5},
-{id:'drink_cold_drinks_ais_kosong_cawan',name:'Ais Kosong — Cawan',cat:'Cold Drinks',price:0.3},
-{id:'drink_cold_drinks_ais_kosong_bungkus',name:'Ais Kosong — Bungkus',cat:'Cold Drinks',price:0.3},
-{id:'drink_extra_joss_anggur_susu_cawan',name:'Anggur (Susu) — Cawan',cat:'Extra Joss',price:3},
-{id:'drink_extra_joss_anggur_susu_bungkus',name:'Anggur (Susu) — Bungkus',cat:'Extra Joss',price:3.5},
-{id:'drink_extra_joss_mangga_susu_cawan',name:'Mangga (Susu) — Cawan',cat:'Extra Joss',price:3},
-{id:'drink_extra_joss_mangga_susu_bungkus',name:'Mangga (Susu) — Bungkus',cat:'Extra Joss',price:3.5},
-{id:'drink_extra_joss_anggur_kosong_cawan',name:'Anggur (Kosong) — Cawan',cat:'Extra Joss',price:2.5},
-{id:'drink_extra_joss_anggur_kosong_bungkus',name:'Anggur (Kosong) — Bungkus',cat:'Extra Joss',price:3},
-{id:'drink_extra_joss_mangga_kosong_cawan',name:'Mangga (Kosong) — Cawan',cat:'Extra Joss',price:2.5},
-{id:'drink_extra_joss_mangga_kosong_bungkus',name:'Mangga (Kosong) — Bungkus',cat:'Extra Joss',price:3}
-]);
+["Sos Nasi Ayam / Sambal Ayam / Belacan","ADD ON",1],
+["Koko TokMa (Cup)","SWEET TREATS",4],["Koko TokMa (Takeaway)","SWEET TREATS",5],
+["Kacira Adudu (Cup)","SWEET TREATS",2.5],["Kacira Adudu (Takeaway)","SWEET TREATS",3.5],
+["Asam Boi Lemon (Cup)","SWEET TREATS",2.5],["Asam Boi Lemon (Takeaway)","SWEET TREATS",3.5],
+["Teh O Lemon Ais (Cup)","SWEET TREATS",2.5],["Teh O Lemon Ais (Takeaway)","SWEET TREATS",3.5],
+["Sirap Lemon Ais (Cup)","SWEET TREATS",2.5],["Sirap Lemon Ais (Takeaway)","SWEET TREATS",3.5],
+["Sirap Bandung Ais (Cup)","SWEET TREATS",2.5],["Sirap Bandung Ais (Takeaway)","SWEET TREATS",3.5],
+["Kopi Ais (Cup)","SWEET TREATS",2.5],["Kopi Ais (Takeaway)","SWEET TREATS",4],
+["Kopi Panas (Cup/Bungkus)","HOT DRINKS",2],["Teh Panas (Cup/Bungkus)","HOT DRINKS",2],["Nes Panas (Cup/Bungkus)","HOT DRINKS",2],
+["Teh O Lemon Panas (Cup/Bungkus)","HOT DRINKS",2],["Sirap Lemon Panas (Cup/Bungkus)","HOT DRINKS",2],
+["Kopi O Panas (Cup/Bungkus)","HOT DRINKS",1.5],["Teh O Panas (Cup/Bungkus)","HOT DRINKS",1.5],["Nes O Panas (Cup/Bungkus)","HOT DRINKS",1.5],["Lemon Panas (Cup/Bungkus)","HOT DRINKS",1.5],
+["Teh O Ais (Cup)","COLD DRINKS",2],["Teh O Ais (Takeaway)","COLD DRINKS",2.5],
+["Teh Ais (Cup)","COLD DRINKS",2.5],["Teh Ais (Takeaway)","COLD DRINKS",4],
+["Nescafe O Ais (Cup)","COLD DRINKS",2],["Nescafe O Ais (Takeaway)","COLD DRINKS",2.5],
+["Nescafe Ais (Cup)","COLD DRINKS",2.5],["Nescafe Ais (Takeaway)","COLD DRINKS",4],
+["Sirap Ais (Cup)","COLD DRINKS",2],["Sirap Ais (Takeaway)","COLD DRINKS",2.5],
+["Kopi O Ais (Cup)","COLD DRINKS",2],["Kopi O Ais (Takeaway)","COLD DRINKS",2.5],
+["Lemon/Limau Ais (Cup)","COLD DRINKS",2],["Lemon/Limau Ais (Takeaway)","COLD DRINKS",2.5],
+["Ais Kosong (Cup)","COLD DRINKS",0.3],["Ais Kosong (Takeaway)","COLD DRINKS",0.3],
+["Extra Joss Anggur (Susu)","EXTRA JOSS",3],["Extra Joss Anggur (Susu) Takeaway","EXTRA JOSS",3.5],
+["Extra Joss Mangga (Susu)","EXTRA JOSS",3],["Extra Joss Mangga (Susu) Takeaway","EXTRA JOSS",3.5],
+["Extra Joss Anggur (Kosong)","EXTRA JOSS",2.5],["Extra Joss Anggur (Kosong) Takeaway","EXTRA JOSS",3],
+["Extra Joss Mangga (Kosong)","EXTRA JOSS",2.5],["Extra Joss Mangga (Kosong) Takeaway","EXTRA JOSS",3]
+].map((x,i)=>({id:"m"+(i+1),name:x[0],cat:x[1],price:x[2]}));
 let S=JSON.parse(localStorage.getItem(K)||"null")||{menus:D,sales:[],tables:{}};
+// Add newly shipped menu items to existing installations without overwriting custom menu edits.
+S.menus=S.menus||D;
+D.forEach(m=>{if(!S.menus.some(x=>x.id===m.id))S.menus.push(m)});
 S.tables=S.tables||{};
-// Tambah menu default baharu pada data sedia ada tanpa memadam rekod/menu pengguna.
-S.menus=S.menus||D.slice();
-D.forEach(m=>{if(!S.menus.some(old=>old.id===m.id))S.menus.push(m)});
+
 let cart=[],pay="Cash",cat="SEMUA",table="01",splitPay="Cash",splitSelection={};
-const TABLES=Array.from({length:8},(_,i)=>String(i+1).padStart(2,"0"));
+const TABLES=Array.from({length:20},(_,i)=>String(i+1).padStart(2,"0"));
 const $=id=>document.getElementById(id), rm=n=>"RM"+n.toFixed(2), today=d=>new Date(d||Date.now()).toLocaleDateString("en-CA");
 function save(){localStorage.setItem(K,JSON.stringify(S))}
 function tableTotal(t){return (S.tables[t]||[]).reduce((a,x)=>{let m=S.menus.find(z=>z.id==x.id);return a+(m?m.price*x.q:0)},0)}
