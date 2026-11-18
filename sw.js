@@ -1,4 +1,4 @@
-const CACHE = 'wnar-pos-v5';
+const CACHE = 'wnar-pos-v6';
 const ASSETS = ['./', './index.html', './style.css', './app.js', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
